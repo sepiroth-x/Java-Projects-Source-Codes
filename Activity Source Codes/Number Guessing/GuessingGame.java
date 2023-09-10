@@ -12,6 +12,7 @@ import java.util.Scanner;
  * @author sepirothx
  * Description: For Students Learning Java
  * License: GNU Public License / Open-Source
+ * Difficulty: Easy
  */
 public class GuessingGame {
     public static void main(String[]args){
