@@ -11,8 +11,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- * Simple Database Query - Profile Browser
- * Description: 
+ * Simple Database Query - Profile Browser  
+ * Description: Display record from database and move next or previous record
  * @author sepirothx
  */
 public class ProfileView extends javax.swing.JFrame {
