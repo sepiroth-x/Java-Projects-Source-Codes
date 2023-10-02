@@ -12,6 +12,7 @@ import java.sql.SQLException;
 /**
  * Simple Database Query - Profile Browser
  * Description: Display record from database and move next or previous record
+ * License: GNU Public License
  * @author sepirothx
  */
 public class DatabaseConnection {
