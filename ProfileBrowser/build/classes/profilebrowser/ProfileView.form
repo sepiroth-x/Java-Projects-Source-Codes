@@ -194,9 +194,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="searchBoxTF">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="search . . . "/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchBoxTFActionPerformed"/>
           </Events>

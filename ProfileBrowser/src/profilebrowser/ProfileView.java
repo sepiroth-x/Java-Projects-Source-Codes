@@ -165,7 +165,6 @@ public class ProfileView extends javax.swing.JFrame {
 
         school_numTF.setEditable(false);
 
-        searchBoxTF.setText("search . . . ");
         searchBoxTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBoxTFActionPerformed(evt);
@@ -511,17 +510,31 @@ public class ProfileView extends javax.swing.JFrame {
                     ResultSet resultSet2 = preparedStatement.executeQuery();
 
                     // Get column names and add them to the table model
-                    java.sql.ResultSetMetaData metaData = resultSet.getMetaData();
+                    java.sql.ResultSetMetaData metaData = resultSet2.getMetaData();
                     int columnCount = metaData.getColumnCount();
                     for (int i = 1; i <= columnCount; i++) {
-                        tableModel.addColumn(metaData.getColumnName(i));
+                        //tableModel.addColumn(metaData.getColumnName(i));
+                        
+                        String columnName = metaData.getColumnName(i);
+                         if (columnName.equals("id") || columnName.equals("firstname") || columnName.equals("lastname") || columnName.equals("school_id") || columnName.equals("section")) {
+                                          tableModel.addColumn(columnName);
+    }
+                        
                     }
 
                     // Add rows to the table model
                     while (resultSet2.next()) {
                         Object[] rowData = new Object[columnCount];
                         for (int i = 1; i <= columnCount; i++) {
-                            rowData[i - 1] = resultSet2.getObject(i);
+                            //rowData[i - 1] = resultSet2.getObject(i);
+                            
+                            rowData[0] = resultSet2.getObject("id");
+                            rowData[1] = resultSet2.getObject("firstname");
+                            rowData[2] = resultSet2.getObject("lastname");
+                            rowData[3] = resultSet2.getObject("school_id");
+                            rowData[4] = resultSet2.getObject("section");
+                            
+                            
                         }
                         tableModel.addRow(rowData);
                     }
