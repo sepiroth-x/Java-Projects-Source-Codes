@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * Simple Database Query - Profile Browser  
@@ -488,6 +489,44 @@ public class ProfileView extends javax.swing.JFrame {
                   firstNameTF.setText(firstName);
                   lastNameTF.setText(lastName);
                   school_numTF.setText(school_id);
+                  
+                  
+                  
+                      //display related data search to the table
+                    // String searchQuery2 = "SELECT * FROM users WHERE";
+                    // Create a table model to store data
+                    DefaultTableModel tableModel = new DefaultTableModel();
+                    userTable1.setModel(tableModel);
+                    
+
+                  
+                    // Create a PreparedStatement
+                    PreparedStatement preparedStatement = connection.prepareStatement(searchQuery);
+                    preparedStatement.setString(1, "%" + searchKeyword + "%");
+                    preparedStatement.setString(2, "%" + searchKeyword + "%");
+                    preparedStatement.setString(3, "%" + searchKeyword + "%");
+                    preparedStatement.setString(4, "%" + searchKeyword + "%");
+
+                    // Execute the query
+                    ResultSet resultSet2 = preparedStatement.executeQuery();
+
+                    // Get column names and add them to the table model
+                    java.sql.ResultSetMetaData metaData = resultSet.getMetaData();
+                    int columnCount = metaData.getColumnCount();
+                    for (int i = 1; i <= columnCount; i++) {
+                        tableModel.addColumn(metaData.getColumnName(i));
+                    }
+
+                    // Add rows to the table model
+                    while (resultSet2.next()) {
+                        Object[] rowData = new Object[columnCount];
+                        for (int i = 1; i <= columnCount; i++) {
+                            rowData[i - 1] = resultSet2.getObject(i);
+                        }
+                        tableModel.addRow(rowData);
+                    }
+                  
+                  
                 
                 
                 
