@@ -35,6 +35,9 @@ public class toolsSearch extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
+        backJLabel.setText("<html><u><font color = 'blue'>BACK</font></u></html>");
+        addNewJLabel.setText("<html><u><font color = 'blue'>ADD NEW</font></u></html>");
+        borrowersJLabel.setText("<html><u><font color = 'blue'>BORROWERS</font></u></html>");
         
           try {
         
@@ -124,6 +127,10 @@ public class toolsSearch extends javax.swing.JFrame {
         qtyTF = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         dateLabel = new javax.swing.JLabel();
+        addNewJLabel = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        backJLabel = new javax.swing.JLabel();
+        borrowersJLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -168,58 +175,100 @@ public class toolsSearch extends javax.swing.JFrame {
 
         dateLabel.setText("YYYY-MM-DD");
 
+        addNewJLabel.setText("ADD NEW");
+        addNewJLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addNewJLabelMouseClicked(evt);
+            }
+        });
+
+        jLabel6.setText("Related Tools Found:");
+
+        backJLabel.setText("BACK");
+        backJLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backJLabelMouseClicked(evt);
+            }
+        });
+
+        borrowersJLabel.setText("BORROWERS");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(searchBoxTF, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchButton))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(searchBoxTF, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(searchButton)
+                                .addGap(192, 192, 192))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(toolnameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(512, 512, 512))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(242, 242, 242)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel3)
+                                            .addComponent(borrowersJLabel)))
+                                    .addComponent(jLabel6))
                                 .addGap(18, 18, 18)
-                                .addComponent(toolnameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(qtyTF))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(qtyTF, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dateLabel)))
+                            .addComponent(backJLabel)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(222, 222, 222)
+                                .addComponent(addNewJLabel)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
+                .addComponent(backJLabel)
+                .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchBoxTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton))
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addNewJLabel)
+                    .addComponent(borrowersJLabel))
+                .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(toolnameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(qtyTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4)
                     .addComponent(dateLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -236,155 +285,150 @@ public class toolsSearch extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void backJLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backJLabelMouseClicked
+        // TODO add your handling code here:
+        setVisible(false);
+        profilebrowser.ProfileView pv = new profilebrowser.ProfileView();
+        pv.setVisible(true);
+    }//GEN-LAST:event_backJLabelMouseClicked
+
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-       
-         try{
-             
+
+        try{
+
             // this sql query will pull out all database records
-              String searchQuery = " SELECT * FROM tools "
-                      + "WHERE id LIKE ? OR " 
-                      + "toolname LIKE ? OR " 
-                      + "tool_category LIKE ? OR "
-                      + "status LIKE ? OR "
-                      + "date_purchased LIKE ? "; 
+            String searchQuery = " SELECT * FROM tools "
+            + "WHERE id LIKE ? OR "
+            + "toolname LIKE ? OR "
+            + "tool_category LIKE ? OR "
+            + "status LIKE ? OR "
+            + "date_purchased LIKE ? ";
 
-               //create object for the DatabaseConnection
-              DatabaseConnection dbc = new DatabaseConnection();
+            //create object for the DatabaseConnection
+            DatabaseConnection dbc = new DatabaseConnection();
 
-              //Declare variables to capture database credentials
-              String jdbcDriver = dbc.getJdbcDriver();
-              String dbConnectionURL = dbc.getDbConnectionURL();
-              String dbUsername = dbc.getDbUsername();
-              String dbPassword = dbc.getDbPassword();
+            //Declare variables to capture database credentials
+            String jdbcDriver = dbc.getJdbcDriver();
+            String dbConnectionURL = dbc.getDbConnectionURL();
+            String dbUsername = dbc.getDbUsername();
+            String dbPassword = dbc.getDbPassword();
 
-              Class.forName(jdbcDriver);
-              Connection connection = DriverManager.getConnection(dbConnectionURL,
-                      dbUsername,dbPassword);
+            Class.forName(jdbcDriver);
+            Connection connection = DriverManager.getConnection(dbConnectionURL,
+                dbUsername,dbPassword);
 
-              PreparedStatement statement = connection.prepareStatement(searchQuery);
-            
-             // Set search parameters (you can customize this part)
-             String searchKeyword = searchBoxTF.getText(); // Replace with your search keyword
-             statement.setString(1, "%" + searchKeyword + "%");
-             statement.setString(2, "%" + searchKeyword + "%");
-             statement.setString(3, "%" + searchKeyword + "%");
-             statement.setString(4, "%" + searchKeyword + "%");
-             statement.setString(5, "%" + searchKeyword + "%");
-           
-              ResultSet resultSet = statement.executeQuery();
-           // Check if a row was found
-           
+            PreparedStatement statement = connection.prepareStatement(searchQuery);
+
+            // Set search parameters (you can customize this part)
+            String searchKeyword = searchBoxTF.getText(); // Replace with your search keyword
+            statement.setString(1, "%" + searchKeyword + "%");
+            statement.setString(2, "%" + searchKeyword + "%");
+            statement.setString(3, "%" + searchKeyword + "%");
+            statement.setString(4, "%" + searchKeyword + "%");
+            statement.setString(5, "%" + searchKeyword + "%");
+
+            ResultSet resultSet = statement.executeQuery();
+            // Check if a row was found
+
             if (resultSet.next()) {
-                 this.tool_id = resultSet.getInt("id");
-                 this.tool_name = resultSet.getString("toolname");
-                 this.tool_category = resultSet.getString("tool_category");
-                 this.tool_description = resultSet.getString("description");
-                 this.tool_qty = resultSet.getInt("qty_in_stock");
-                 this.tool_date_purchased = resultSet.getString("date_purchased");
-                
- 
+                this.tool_id = resultSet.getInt("id");
+                this.tool_name = resultSet.getString("toolname");
+                this.tool_category = resultSet.getString("tool_category");
+                this.tool_description = resultSet.getString("description");
+                this.tool_qty = resultSet.getInt("qty_in_stock");
+                this.tool_date_purchased = resultSet.getString("date_purchased");
 
                 // Display the retrieved data to console
-          
-                
-                 //display the output in the UI
-                  toolnameTF.setText(this.tool_name);
-                  descriptionTA.setText(this.tool_description);
-                  qtyTF.setText(String.valueOf(this.tool_qty));
-                  dateLabel.setText(this.tool_date_purchased);
-                  
-                  
-                  
-                      //display related data search to the table
-                    // String searchQuery2 = "SELECT * FROM tools WHERE";
-                    // Create a table model to store data
-                    DefaultTableModel tableModel = new DefaultTableModel();
-                    toolsTable.setModel(tableModel);
-                    
-                     /*this part is the application of centering the data in the cell, coming from the custom class inside
-                    *the tablerelated package, inside CenteredTableCellRenderer class
-                    **/
-                    tablerelated.CenteredTableCellRenderer renderer = new tablerelated.CenteredTableCellRenderer();
-                    toolsTable.setDefaultRenderer(Object.class, renderer);
-                    
-                    
 
-                  
-                    // Create a PreparedStatement
-                    PreparedStatement preparedStatement = connection.prepareStatement(searchQuery);
-                    preparedStatement.setString(1, "%" + searchKeyword + "%");
-                    preparedStatement.setString(2, "%" + searchKeyword + "%");
-                    preparedStatement.setString(3, "%" + searchKeyword + "%");
-                    preparedStatement.setString(4, "%" + searchKeyword + "%");
-                    preparedStatement.setString(5, "%" + searchKeyword + "%");
-          
+                //display the output in the UI
+                toolnameTF.setText(this.tool_name);
+                descriptionTA.setText(this.tool_description);
+                qtyTF.setText(String.valueOf(this.tool_qty));
+                dateLabel.setText(this.tool_date_purchased);
 
-                    // Execute the query
-                    ResultSet resultSet2 = preparedStatement.executeQuery();
+                //display related data search to the table
+                // String searchQuery2 = "SELECT * FROM tools WHERE";
+                // Create a table model to store data
+                DefaultTableModel tableModel = new DefaultTableModel();
+                toolsTable.setModel(tableModel);
 
-                    // Get column names and add them to the table model
-                    java.sql.ResultSetMetaData metaData = resultSet2.getMetaData();
-                    
-                    int columnCount = metaData.getColumnCount();
+                /*this part is the application of centering the data in the cell, coming from the custom class inside
+                *the tablerelated package, inside CenteredTableCellRenderer class
+                **/
+                tablerelated.CenteredTableCellRenderer renderer = new tablerelated.CenteredTableCellRenderer();
+                toolsTable.setDefaultRenderer(Object.class, renderer);
+
+                // Create a PreparedStatement
+                PreparedStatement preparedStatement = connection.prepareStatement(searchQuery);
+                preparedStatement.setString(1, "%" + searchKeyword + "%");
+                preparedStatement.setString(2, "%" + searchKeyword + "%");
+                preparedStatement.setString(3, "%" + searchKeyword + "%");
+                preparedStatement.setString(4, "%" + searchKeyword + "%");
+                preparedStatement.setString(5, "%" + searchKeyword + "%");
+
+                // Execute the query
+                ResultSet resultSet2 = preparedStatement.executeQuery();
+
+                // Get column names and add them to the table model
+                java.sql.ResultSetMetaData metaData = resultSet2.getMetaData();
+
+                int columnCount = metaData.getColumnCount();
+                for (int i = 1; i <= columnCount; i++) {
+
+                    //tableModel.addColumn(metaData.getColumnName(i));
+
+                    String columnName = metaData.getColumnName(i);
+                    if ( columnName.equals("toolname") ||
+                        columnName.equals("tool_category") ||
+                        columnName.equals("qty_in_stock") ||
+                        columnName.equals("status")) {
+
+                        tableModel.addColumn(columnName);
+
+                    }
+
+                }
+
+                // Add rows to the table model
+                while (resultSet2.next()) {
+                    Object[] rowData = new Object[columnCount];
                     for (int i = 1; i <= columnCount; i++) {
-                        
-                            //tableModel.addColumn(metaData.getColumnName(i));
-              
-                            String columnName = metaData.getColumnName(i);
-                            if ( columnName.equals("toolname") || 
-                                 columnName.equals("tool_category") || 
-                                 columnName.equals("qty_in_stock") || 
-                                 columnName.equals("status")) {
-                                 
-                          
-                                     tableModel.addColumn(columnName);
-                                 
-                                 
-                            }
-                        
-                    }
+                        //rowData[i - 1] = resultSet2.getObject(i);
 
-                    // Add rows to the table model
-                    while (resultSet2.next()) {
-                        Object[] rowData = new Object[columnCount];
-                        for (int i = 1; i <= columnCount; i++) {
-                            //rowData[i - 1] = resultSet2.getObject(i);
-                            
-                            rowData[0] = resultSet2.getObject("toolname");
-                            rowData[1] = resultSet2.getObject("tool_category");
-                            rowData[2] = resultSet2.getObject("qty_in_stock");
-                            rowData[3] = resultSet2.getObject("status");
-                       
-                            
-                            
-                        }
-                        tableModel.addRow(rowData);
+                        rowData[0] = resultSet2.getObject("toolname");
+                        rowData[1] = resultSet2.getObject("tool_category");
+                        rowData[2] = resultSet2.getObject("qty_in_stock");
+                        rowData[3] = resultSet2.getObject("status");
+
                     }
-                  
-                  
+                    tableModel.addRow(rowData);
+                }
+
             } else {
                 System.out.println("No matching records found.");
                 JOptionPane.showMessageDialog(null, "No record found!");
             }
-              
-               
+
             connection.close();
             resultSet.close();
             statement.close();
-            
+
         }  catch (ClassNotFoundException | SQLException e  ) {
-            
+
             e.printStackTrace();
-            
-        
-        
-       
+
         }
-        
-        
-        
-        
     }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void addNewJLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addNewJLabelMouseClicked
+        // TODO add your handling code here:
+        setVisible(false);
+        AddNewTool adt = new AddNewTool();
+        adt.setVisible(true);
+        
+        
+        
+    }//GEN-LAST:event_addNewJLabelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -422,12 +466,16 @@ public class toolsSearch extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel addNewJLabel;
+    private javax.swing.JLabel backJLabel;
+    private javax.swing.JLabel borrowersJLabel;
     private javax.swing.JLabel dateLabel;
     private javax.swing.JTextArea descriptionTA;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

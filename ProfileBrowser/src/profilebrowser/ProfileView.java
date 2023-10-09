@@ -57,7 +57,7 @@ public class ProfileView extends javax.swing.JFrame {
     public ProfileView() {
         initComponents();
         setLocationRelativeTo(null);
-        toolsjLabel.setText("<html><u>TOOLS</u></html>");
+        toolsjLabel.setText("<html><u><font color='blue'>TOOLS</font></u></html>");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
 
