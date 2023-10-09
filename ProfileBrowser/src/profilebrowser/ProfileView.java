@@ -23,11 +23,43 @@ public class ProfileView extends javax.swing.JFrame {
      * Creates new form ProfileView
      */
     private static int currentRecord = 1; //added for next record
+    private  String profileImagePath = "/";
+    private  String record_id;
+    private  String firstName;
+    private  String lastName;
+    private  String school_id;
+    private  String section;
+    private  String status; 
+
+    public String getRecord_id() {
+        return record_id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getSchool_id() {
+        return school_id;
+    }
+
+    public String getSection() {
+        return section;
+    }
     
     
+    
+
     public ProfileView() {
         initComponents();
         setLocationRelativeTo(null);
+        toolsjLabel.setText("<html><u>TOOLS</u></html>");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
 
         try {
         
@@ -54,27 +86,23 @@ public class ProfileView extends javax.swing.JFrame {
         if(resultSet.next()) {
             
             System.out.println("Connection established!");
-            String record_id = resultSet.getString("id");
-            String firstName = resultSet.getString("firstname");
-            String lastName = resultSet.getString("lastname");
-            String school_id = resultSet.getString("school_id");
+            this.record_id = resultSet.getString("id");
+            this.firstName = resultSet.getString("firstname");
+            this.lastName = resultSet.getString("lastname");
+            this.school_id = resultSet.getString("school_id");
             
-            
-            
-            System.out.println("Record ID: " + record_id);
-            System.out.println("First Name: " + firstName);
-            System.out.println("Last Name: " + lastName);
-            System.out.println("School ID: " + school_id);
+            System.out.println("Record ID: " + this.record_id);
+            System.out.println("First Name: " + this.firstName);
+            System.out.println("Last Name: " + this.lastName);
+            System.out.println("School ID: " + this.school_id);
             
             //display the output in the UI
-            recordNumJL.setText(record_id);
-            firstNameTF.setText(firstName);
-            lastNameTF.setText(lastName);
-            school_numTF.setText(school_id);
+            recordNumJL.setText(this.record_id);
+            firstNameTF.setText(this.firstName);
+            lastNameTF.setText(this.lastName);
+            school_numTF.setText(this.school_id);
             
-            
-           
-            
+     
         }
             
             connection.close();
@@ -119,6 +147,9 @@ public class ProfileView extends javax.swing.JFrame {
         go_searchButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         userTable1 = new javax.swing.JTable();
+        jLabelForImage = new javax.swing.JLabel();
+        fullDetailsJLabel = new javax.swing.JLabel();
+        toolsjLabel = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -165,7 +196,6 @@ public class ProfileView extends javax.swing.JFrame {
 
         school_numTF.setEditable(false);
 
-        searchBoxTF.setText("search . . . ");
         searchBoxTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBoxTFActionPerformed(evt);
@@ -190,7 +220,26 @@ public class ProfileView extends javax.swing.JFrame {
                 "First Name", "Last Name", "Course", "Year Level"
             }
         ));
+        userTable1.setEnabled(false);
         jScrollPane1.setViewportView(userTable1);
+
+        jLabelForImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelForImage.setText("PHOTO");
+        jLabelForImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        fullDetailsJLabel.setText("View Full Details");
+        fullDetailsJLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fullDetailsJLabelMouseClicked(evt);
+            }
+        });
+
+        toolsjLabel.setText("TOOLS");
+        toolsjLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                toolsjLabelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -199,61 +248,83 @@ public class ProfileView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel3)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addGap(6, 6, 6))
+                        .addComponent(toolsjLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(firstNameTF)
-                    .addComponent(lastNameTF)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(school_numTF, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lastNameTF, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(firstNameTF, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(recordNumJL, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(searchBoxTF, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(go_searchButton)
+                                .addGap(0, 6, Short.MAX_VALUE)))
+                        .addGap(82, 82, 82)
+                        .addComponent(jLabelForImage, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(recordNumJL, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addComponent(previousButton)
                         .addGap(18, 18, 18)
-                        .addComponent(searchBoxTF, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                        .addComponent(go_searchButton))
-                    .addComponent(school_numTF))
-                .addGap(70, 70, 70))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(previousButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(176, 176, 176))
+                        .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addComponent(jScrollPane1))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(211, 211, 211)
+                .addComponent(fullDetailsJLabel)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(recordNumJL)
-                    .addComponent(searchBoxTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(go_searchButton))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(firstNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(lastNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(school_numTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(toolsjLabel)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(recordNumJL)
+                                    .addComponent(searchBoxTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(go_searchButton))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(firstNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(lastNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(school_numTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
+                    .addComponent(jLabelForImage, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nextButton)
-                    .addComponent(previousButton))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1)
+                    .addComponent(previousButton)
+                    .addComponent(nextButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(fullDetailsJLabel)
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -261,7 +332,9 @@ public class ProfileView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,23 +375,23 @@ public class ProfileView extends javax.swing.JFrame {
         if(resultSet.next()) {
             
             System.out.println("Connection established!");
-            String record_id = resultSet.getString("id");
-            String firstName = resultSet.getString("firstname");
-            String lastName = resultSet.getString("lastname");
-            String school_id = resultSet.getString("school_id");
+            this.record_id = resultSet.getString("id");
+            this.firstName = resultSet.getString("firstname");
+            this.lastName = resultSet.getString("lastname");
+            this.school_id = resultSet.getString("school_id");
             
             
             
-            System.out.println("Record ID: " + record_id);
-            System.out.println("First Name: " + firstName);
-            System.out.println("Last Name: " + lastName);
-            System.out.println("School ID: " + school_id);
+            System.out.println("Record ID: " + this.record_id);
+            System.out.println("First Name: " + this.firstName);
+            System.out.println("Last Name: " + this.lastName);
+            System.out.println("School ID: " + this.school_id);
             
             //display the output in the UI
-            recordNumJL.setText(record_id);
-            firstNameTF.setText(firstName);
-            lastNameTF.setText(lastName);
-            school_numTF.setText(school_id);
+            recordNumJL.setText(this.record_id);
+            firstNameTF.setText(this.firstName);
+            lastNameTF.setText(this.lastName);
+            school_numTF.setText(this.school_id);
             
             
            currentRecord++; //added as counter
@@ -379,23 +452,23 @@ public class ProfileView extends javax.swing.JFrame {
               if(resultSet.next()) {
 
                   System.out.println("Connection established!");
-                  String record_id = resultSet.getString("id");
-                  String firstName = resultSet.getString("firstname");
-                  String lastName = resultSet.getString("lastname");
-                  String school_id = resultSet.getString("school_id");
+                  this.record_id = resultSet.getString("id");
+                  this.firstName = resultSet.getString("firstname");
+                  this.lastName = resultSet.getString("lastname");
+                  this.school_id = resultSet.getString("school_id");
 
 
 
-                  System.out.println("Record ID: " + record_id);
-                  System.out.println("First Name: " + firstName);
-                  System.out.println("Last Name: " + lastName);
-                  System.out.println("School ID: " + school_id);
+                  System.out.println("Record ID: " + this.record_id);
+                  System.out.println("First Name: " + this.firstName);
+                  System.out.println("Last Name: " + this.lastName);
+                  System.out.println("School ID: " + this.school_id);
 
                   //display the output in the UI
-                  recordNumJL.setText(record_id);
-                  firstNameTF.setText(firstName);
-                  lastNameTF.setText(lastName);
-                  school_numTF.setText(school_id);
+                  recordNumJL.setText(this.record_id);
+                  firstNameTF.setText(this.firstName);
+                  lastNameTF.setText(this.lastName);
+                  school_numTF.setText(this.school_id);
 
 
                
@@ -435,14 +508,15 @@ public class ProfileView extends javax.swing.JFrame {
 
     private void go_searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_go_searchButtonActionPerformed
         // TODO add your handling code here:
-        
+
          try{
              
             // this sql query will pull out all database records
               String searchQuery = " SELECT * FROM users "
                       + "WHERE id LIKE ? OR " 
                       + "firstname LIKE ? OR " 
-                      + "lastname LIKE ? OR " 
+                      + "lastname LIKE ? OR "
+                      + "section LIKE ? OR "
                       + "school_id LIKE ? "; 
 
                //create object for the DatabaseConnection
@@ -466,29 +540,30 @@ public class ProfileView extends javax.swing.JFrame {
              statement.setString(2, "%" + searchKeyword + "%");
              statement.setString(3, "%" + searchKeyword + "%");
              statement.setString(4, "%" + searchKeyword + "%");
+             statement.setString(5, "%" + searchKeyword + "%");
            
               ResultSet resultSet = statement.executeQuery();
            // Check if a row was found
            
             if (resultSet.next()) {
-                String firstName = resultSet.getString("firstname");
-                String lastName = resultSet.getString("lastname");
-                String record_id = resultSet.getString("id");
-                String school_id = resultSet.getString("school_id");
+                 this.firstName = resultSet.getString("firstname");
+                 this.lastName = resultSet.getString("lastname");
+                 this.record_id = resultSet.getString("id");
+                 this.school_id = resultSet.getString("school_id");
                 
  
 
                 // Display the retrieved data
-                System.out.println("First Name: " + firstName);
-                System.out.println("Last Name: " + lastName);
-                System.out.println("ID: " + record_id);
-                System.out.println("School ID: " + school_id);
+                System.out.println("First Name: " + this.firstName);
+                System.out.println("Last Name: " + this.lastName);
+                System.out.println("ID: " + this.record_id);
+                System.out.println("School ID: " + this.school_id);
                 
                  //display the output in the UI
-                  recordNumJL.setText(record_id);
-                  firstNameTF.setText(firstName);
-                  lastNameTF.setText(lastName);
-                  school_numTF.setText(school_id);
+                  recordNumJL.setText(this.record_id);
+                  firstNameTF.setText(this.firstName);
+                  lastNameTF.setText(this.lastName);
+                  school_numTF.setText(this.school_id);
                   
                   
                   
@@ -498,6 +573,12 @@ public class ProfileView extends javax.swing.JFrame {
                     DefaultTableModel tableModel = new DefaultTableModel();
                     userTable1.setModel(tableModel);
                     
+                    /*this part is the application of centering the data in the cell, coming from the custom class inside
+                    *the tablerelated package, inside CenteredTableCellRenderer class
+                    **/
+                    tablerelated.CenteredTableCellRenderer renderer = new tablerelated.CenteredTableCellRenderer();
+                    userTable1.setDefaultRenderer(Object.class, renderer);
+                    
 
                   
                     // Create a PreparedStatement
@@ -506,30 +587,51 @@ public class ProfileView extends javax.swing.JFrame {
                     preparedStatement.setString(2, "%" + searchKeyword + "%");
                     preparedStatement.setString(3, "%" + searchKeyword + "%");
                     preparedStatement.setString(4, "%" + searchKeyword + "%");
+                    preparedStatement.setString(5, "%" + searchKeyword + "%");
 
                     // Execute the query
                     ResultSet resultSet2 = preparedStatement.executeQuery();
 
                     // Get column names and add them to the table model
-                    java.sql.ResultSetMetaData metaData = resultSet.getMetaData();
+                    java.sql.ResultSetMetaData metaData = resultSet2.getMetaData();
+                    
                     int columnCount = metaData.getColumnCount();
                     for (int i = 1; i <= columnCount; i++) {
-                        tableModel.addColumn(metaData.getColumnName(i));
+                        
+                            //tableModel.addColumn(metaData.getColumnName(i));
+              
+                            String columnName = metaData.getColumnName(i);
+                            if (columnName.equals("id") || columnName.equals("firstname") || 
+                                 columnName.equals("lastname") || columnName.equals("school_id") || 
+                                 columnName.equals("section")) {
+                                 
+                                     tableModel.addColumn(columnName);
+
+                            }
+                        
                     }
 
                     // Add rows to the table model
                     while (resultSet2.next()) {
                         Object[] rowData = new Object[columnCount];
                         for (int i = 1; i <= columnCount; i++) {
-                            rowData[i - 1] = resultSet2.getObject(i);
+                            //rowData[i - 1] = resultSet2.getObject(i);
+                            
+                            rowData[0] = resultSet2.getObject("id");
+                            rowData[1] = resultSet2.getObject("firstname");
+                            rowData[2] = resultSet2.getObject("lastname");
+                            rowData[3] = resultSet2.getObject("school_id");
+                            rowData[4] = resultSet2.getObject("section");
+                            
+                            
+                            
+                            
                         }
                         tableModel.addRow(rowData);
                     }
+                    
+         
                   
-                  
-                
-                
-                
             } else {
                 System.out.println("No matching records found.");
                 JOptionPane.showMessageDialog(null, "No record found!");
@@ -550,6 +652,28 @@ public class ProfileView extends javax.swing.JFrame {
         }
              
     }//GEN-LAST:event_go_searchButtonActionPerformed
+
+    private void fullDetailsJLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fullDetailsJLabelMouseClicked
+        // Profile Full View - TODO add your handling code here:
+        setVisible(false);
+        
+       String firstname  = this.firstName;
+       String lastname = this.lastName;
+        
+        ProfileFullView pfv = new ProfileFullView(firstname, lastname);
+        setVisible(false);
+        
+        
+        
+    }//GEN-LAST:event_fullDetailsJLabelMouseClicked
+
+    private void toolsjLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_toolsjLabelMouseClicked
+        // TODO add your handling code here:
+        complabinventory.toolsSearch ts = new complabinventory.toolsSearch();
+        ts.setVisible(true);
+        setVisible(false);
+        
+    }//GEN-LAST:event_toolsjLabelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -588,12 +712,14 @@ public class ProfileView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField firstNameTF;
+    private javax.swing.JLabel fullDetailsJLabel;
     private javax.swing.JButton go_searchButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelForImage;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -603,6 +729,7 @@ public class ProfileView extends javax.swing.JFrame {
     private javax.swing.JLabel recordNumJL;
     private javax.swing.JTextField school_numTF;
     private javax.swing.JTextField searchBoxTF;
+    private javax.swing.JLabel toolsjLabel;
     private javax.swing.JTable userTable1;
     // End of variables declaration//GEN-END:variables
 }
