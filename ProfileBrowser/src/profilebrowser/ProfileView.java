@@ -36,6 +36,8 @@ public class ProfileView extends javax.swing.JFrame {
     private  String lastName;
     private  String school_id;
     private  String section;
+    private String img_filename;
+    
     //private  String status; 
 
     public String getRecord_id() {
@@ -97,37 +99,30 @@ public class ProfileView extends javax.swing.JFrame {
             this.firstName = resultSet.getString("firstname");
             this.lastName = resultSet.getString("lastname");
             this.school_id = resultSet.getString("school_id");
+            this.img_filename = resultSet.getString("img_filename");
             
+            //Debugging: Displaying Profile Details Frame # 1
             System.out.println("Record ID: " + this.record_id);
             System.out.println("First Name: " + this.firstName);
             System.out.println("Last Name: " + this.lastName);
             System.out.println("School ID: " + this.school_id);
+            System.out.println("School ID: " + this.img_filename);
+            
             
             //display the output in the UI
             recordNumJL.setText(this.record_id);
             firstNameTF.setText(this.firstName);
             lastNameTF.setText(this.lastName);
             school_numTF.setText(this.school_id);
+          
             
-            //display image of user
-            
-//            String imageFilename = resultSet.getString("img_filename");
-//            URL imageUrl = getClass().getResource("/img/users/"+imageFilename); // replace with your image file name
-//            //JLabel imageLabel = new JLabel(new ImageIcon(imageUrl));
-//             jLabelForImage = new JLabel(new ImageIcon(imageUrl));
-//            
-//            //JFrame frame = new JFrame();
-//            
-//            jPanelForImage.add(jLabelForImage);
-//            jPanelForImage. setPreferredSize(new Dimension(42, 18));
-//            //jPanelForImage.pack();
-//            jPanelForImage.setVisible(true);
-            
+       //Debugging: Displaying User's Photo - Start
        
            String imageFilename = resultSet.getString("img_filename");
            URL imageUrl = getClass().getResource("/img/users/" + imageFilename);
            
          if (imageUrl != null) {
+             
                 try {
                     // Read the image from URL
                     BufferedImage originalImage = ImageIO.read(imageUrl);
@@ -150,9 +145,30 @@ public class ProfileView extends javax.swing.JFrame {
         } else {
             // Handle the case where the image resource is not found
             System.err.println("Image resource not found: " + imageFilename);
+            
+               try {
+                    // Read the image from URL
+                    URL imageUrl2 = getClass().getResource("/img/users/unknown.jpg");
+                    BufferedImage originalImage = ImageIO.read(imageUrl2);
+
+                    // Scale the image to fit the dimensions of the label
+                    ImageIcon imageIcon = new ImageIcon(getScaledImage(originalImage, jLabelForImage.getWidth(), jLabelForImage.getHeight()));
+
+                    // Set the scaled image to the label
+                    jLabelForImage.setIcon(imageIcon);
+
+                    // Make the JLabel visible
+                    jLabelForImage.setVisible(true);
+
+                    // You might need to revalidate and repaint the label if it's already visible
+                    jLabelForImage.revalidate();
+                    jLabelForImage.repaint();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
         }
          
-         
+        // Debugging: End of User Photo Display 
      
 
             
@@ -174,6 +190,7 @@ public class ProfileView extends javax.swing.JFrame {
         
         
     }
+  
     // Image Helper method to scale the image - custom written by sepiroth x
     private Image getScaledImage(Image srcImg, int width, int height) {
         BufferedImage resizedImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -459,6 +476,69 @@ public class ProfileView extends javax.swing.JFrame {
             
             
            currentRecord++; //added as counter
+           
+           
+            //Debugging: Displaying User's Photo - Start
+       
+           String imageFilename = resultSet.getString("img_filename");
+           URL imageUrl = getClass().getResource("/img/users/" + imageFilename);
+           
+         if (imageUrl != null) {
+             
+                try {
+                    // Read the image from URL
+                    BufferedImage originalImage = ImageIO.read(imageUrl);
+
+                    // Scale the image to fit the dimensions of the label
+                    ImageIcon imageIcon = new ImageIcon(getScaledImage(originalImage, jLabelForImage.getWidth(), jLabelForImage.getHeight()));
+
+                    // Set the scaled image to the label
+                    jLabelForImage.setIcon(imageIcon);
+
+                    // Make the JLabel visible
+                    jLabelForImage.setVisible(true);
+
+                    // You might need to revalidate and repaint the label if it's already visible
+                    jLabelForImage.revalidate();
+                    jLabelForImage.repaint();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        } else {
+            // Handle the case where the image resource is not found
+            System.err.println("Image resource not found: " + imageFilename);
+            
+               try {
+                    // Read the image from URL
+                    URL imageUrl2 = getClass().getResource("/img/users/unknown.jpg");
+                    BufferedImage originalImage = ImageIO.read(imageUrl2);
+
+                    // Scale the image to fit the dimensions of the label
+                    ImageIcon imageIcon = new ImageIcon(getScaledImage(originalImage, jLabelForImage.getWidth(), jLabelForImage.getHeight()));
+
+                    // Set the scaled image to the label
+                    jLabelForImage.setIcon(imageIcon);
+
+                    // Make the JLabel visible
+                    jLabelForImage.setVisible(true);
+
+                    // You might need to revalidate and repaint the label if it's already visible
+                    jLabelForImage.revalidate();
+                    jLabelForImage.repaint();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        }
+         
+        // Debugging: End of User Photo Display 
+     
+
+           
+           
+           
+           
+           
+           
             
         } else {System.out.println("No more record found!");
         
@@ -535,6 +615,61 @@ public class ProfileView extends javax.swing.JFrame {
                   firstNameTF.setText(this.firstName);
                   lastNameTF.setText(this.lastName);
                   school_numTF.setText(this.school_id);
+
+                   //Debugging: Displaying User's Photo - Start
+       
+           String imageFilename = resultSet.getString("img_filename");
+           URL imageUrl = getClass().getResource("/img/users/" + imageFilename);
+           
+         if (imageUrl != null) {
+             
+                try {
+                    // Read the image from URL
+                    BufferedImage originalImage = ImageIO.read(imageUrl);
+
+                    // Scale the image to fit the dimensions of the label
+                    ImageIcon imageIcon = new ImageIcon(getScaledImage(originalImage, jLabelForImage.getWidth(), jLabelForImage.getHeight()));
+
+                    // Set the scaled image to the label
+                    jLabelForImage.setIcon(imageIcon);
+
+                    // Make the JLabel visible
+                    jLabelForImage.setVisible(true);
+
+                    // You might need to revalidate and repaint the label if it's already visible
+                    jLabelForImage.revalidate();
+                    jLabelForImage.repaint();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        } else {
+            // Handle the case where the image resource is not found
+            System.err.println("Image resource not found: " + imageFilename);
+            
+               try {
+                    // Read the image from URL
+                    URL imageUrl2 = getClass().getResource("/img/users/unknown.jpg");
+                    BufferedImage originalImage = ImageIO.read(imageUrl2);
+
+                    // Scale the image to fit the dimensions of the label
+                    ImageIcon imageIcon = new ImageIcon(getScaledImage(originalImage, jLabelForImage.getWidth(), jLabelForImage.getHeight()));
+
+                    // Set the scaled image to the label
+                    jLabelForImage.setIcon(imageIcon);
+
+                    // Make the JLabel visible
+                    jLabelForImage.setVisible(true);
+
+                    // You might need to revalidate and repaint the label if it's already visible
+                    jLabelForImage.revalidate();
+                    jLabelForImage.repaint();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        }
+         
+        // Debugging: End of User Photo Display 
+     
 
 
                
