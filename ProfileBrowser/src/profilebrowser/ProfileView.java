@@ -170,8 +170,6 @@ public class ProfileView extends javax.swing.JFrame {
          
         // Debugging: End of User Photo Display 
      
-
-            
      
         }
             
@@ -460,6 +458,7 @@ public class ProfileView extends javax.swing.JFrame {
             this.firstName = resultSet.getString("firstname");
             this.lastName = resultSet.getString("lastname");
             this.school_id = resultSet.getString("school_id");
+            this.img_filename = resultSet.getString("img_filename");
             
             
             
@@ -467,6 +466,7 @@ public class ProfileView extends javax.swing.JFrame {
             System.out.println("First Name: " + this.firstName);
             System.out.println("Last Name: " + this.lastName);
             System.out.println("School ID: " + this.school_id);
+            System.out.println("Profile File Name:: " + this.school_id);
             
             //display the output in the UI
             recordNumJL.setText(this.record_id);
